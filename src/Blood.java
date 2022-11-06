@@ -26,6 +26,33 @@ public class Blood {
             switch (choice) {
                 case 1:
                     System.out.println("insert donor selected");
+                    System.out.println("enter the name:");
+                    String name = scanner.next();
+                    System.out.println("enter the bloodgroup:");
+                    String bloodgroup = scanner.next();
+                    System.out.println("enter the unit:");
+                    int unit = scanner.nextInt();
+                    System.out.println("enter the phone:");
+                    String phone = scanner.next();
+                    System.out.println("enter the place:");
+                    String place = scanner.next();
+
+                    try {
+                        Class.forName("com.mysql.jdbc.Driver");
+                        Connection con = DriverManager.getConnection("jdbc:mysql://localhost:3306/bloodbankdb", "root", "");
+                        String sql = "INSERT INTO `donors`(`name`, `bloodgroup`, `unit`, `phone`, `place`) VALUES (?,?,?,?,?)";
+                        PreparedStatement stmt = con.prepareStatement(sql);
+                        stmt.setString(1, name);
+                        stmt.setString(2, bloodgroup);
+                        stmt.setInt(3, unit);
+                        stmt.setString(4, phone);
+                        stmt.setString(5, place);
+
+                        stmt.executeUpdate();
+                    } catch (Exception e) {
+                        System.out.println(e);
+                    }
+
                     break;
 
                 case 2:
