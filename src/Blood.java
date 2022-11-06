@@ -1,4 +1,8 @@
-
+import java.sql.*;
+import java.util.Scanner;
+import java.sql.Connection;
+import java.sql.DriverManager;
+import java.sql.PreparedStatement;
 import java.util.Scanner;
 
 public class Blood {
@@ -21,7 +25,7 @@ public class Blood {
 
             switch (choice) {
                 case 1:
-                    System.out.println("insert selected");
+                    System.out.println("insert donor selected");
                     break;
 
                 case 2:
