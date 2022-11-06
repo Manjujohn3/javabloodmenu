@@ -70,7 +70,6 @@ public class Blood {
                             String getPhone = rs.getString("phone");
                             String getPlace = rs.getString("place");
 
-
                             System.out.println("name="+getName);
                             System.out.println("bloodgroup="+getBloodgroup);
                             System.out.println("unit="+getUnit);
@@ -82,10 +81,36 @@ public class Blood {
                     catch (Exception e) {
                         System.out.println(e);
                     }
-
                     break;
+
                 case 3:
                     System.out.println("search selected");
+                    System.out.println("Enter the bloodgroup : ");
+                    bloodgroup = scanner.next();
+                    try {
+                        Class.forName("com.mysql.jdbc.Driver");
+                        Connection con = DriverManager.getConnection("jdbc:mysql://localhost:3306/bloodbankdb","root","");
+                        String sql = "SELECT `name`, `bloodgroup`, `unit`, `phone`, `place` FROM `donors` WHERE`bloodgroup`='"+bloodgroup+"'";
+                        Statement stmt = con.createStatement();
+                        ResultSet rs = stmt.executeQuery(sql);
+                        while (rs.next()) {
+                            String getName = rs.getString("name");
+                            String getBloodgroup = rs.getString("bloodgroup");
+                            String getUnit = rs.getString("unit");
+                            String getPhone = rs.getString("phone");
+                            String getPlace = rs.getString("place");
+
+                            System.out.println("name=" + getName);
+                            System.out.println("bloodgroup=" + getBloodgroup);
+                            System.out.println("unit=" + getUnit);
+                            System.out.println("phone=" + getPhone);
+                            System.out.println("place=" + getPlace + "\n");
+                        }
+                        }
+                    catch (Exception e ){
+                        System.out.println(e);
+                    }
+
                     break;
 
                 case 4:
